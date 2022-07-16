@@ -1,0 +1,137 @@
+#: import Clock kivy.clock.Clock
+#: import partial functools.partial
+<CLabel@MDLabel+HoverBehavior>:
+<Ccard@Card+HoverBehavior>:   
+    
+MDScreen:
+    name:"main"
+    id:main
+    md_bg_color:app.theme_cls.bg_normal
+    MDLabel:
+        pos_hint:{"center_x":0.5,"center_y":0.85}
+        halign:"center"
+        text:"Login"
+        font_size:"35sp"
+        font_name:"assets/Poppins-Bold.ttf"
+        id:test2
+    
+    CLabel:
+        size_hint:None,None
+        size:dp(200),dp(40)
+        pos_hint:{"center_x":0.8,"center_y":0.2}
+        id:text_label
+        halign:"center"
+        text:"Forgot password?"
+        font_size:"15sp"
+        font_name:"assets/Poppins-Regular.ttf"
+        theme_text_color:"Custom"
+        text_color:0,0,0,.4
+        on_enter:self.underline = True 
+        on_leave:self.underline = False
+    Card:
+        id:my_card
+        pos_hint:{"center_x":0.4,"center_y":0.45}
+        md_bg_color:app.theme_cls.bg_light
+        radius:0,dp(80),dp(80),0
+        size_hint:None,None
+        size:app.x-dp(40),dp(150)
+        elevation:dp(20)
+        orientation:"vertical"
+        RelativeLayout:
+            MDBoxLayout:
+                pos_hint:{"center_x":0.46,"center_y":0.85}
+                size_hint:None,None
+                size:(app.x-dp(40))-dp(50),dp(80)
+                md_bg_color:0,0,0,0
+                MDIconButton:
+                    icon:"account"
+                MDTextField:
+                    id:username
+                    hint_text: "Username"
+            MDBoxLayout:
+                id:test_box
+                pos_hint:{"center_x":0.0,"center_y":0.47}
+                size_hint:None,None
+                size:(app.x-dp(40))-dp(50),dp(80)
+                md_bg_color:0,0,0,0
+                opacity:0
+                MDIconButton:
+                    icon:"email"
+                MDTextField:
+                    id:mail
+                    hint_text: "Email"
+            MDBoxLayout:
+                pos_hint:{"center_x":0.46,"center_y":0.3}
+                size_hint:None,None
+                size:(app.x-dp(40))-dp(50),dp(80)
+                md_bg_color:0,0,0,0
+                opacity:1
+                MDIconButton:
+                    icon:"lock"
+                MDTextField:
+                    id:password
+                    hint_text: "Password"
+                    password:True
+
+    Ccard:
+        id:text_card
+        pos_hint:{"center_x":-0.005,"center_y":0.25}
+        md_bg_color:app.theme_cls.bg_light
+        radius:dp(40)
+        size_hint:None,None
+        size:app.x-dp(60),dp(60)
+        elevation:dp(0)
+        orientation:"horizontal"
+        on_enter:self.elevation = dp(20) 
+        on_leave:self.elevation = dp(0)
+        on_press:app.change_type(self)
+        MDLabel:
+            id:test
+            halign:"center"
+            text:"Login"
+            theme_text_color:"Custom"
+            text_color:"#f47796"
+            font_size:"18sp"
+            font_name:"assets/Poppins-Bold.ttf"
+        MDLabel:
+            halign:"center"
+            text:"Register"
+            theme_text_color:"Custom"
+            text_color:"#f47796"
+            font_size:"18sp"
+            font_name:"assets/Poppins-Bold.ttf"
+
+    CardCircular:
+        pos_hint:{"center_x":0.85,"center_y":0.45}
+        size_hint:None,None
+        size:dp(60),dp(60)
+        md_bg_color:app.theme_cls.primary_color
+        radius:dp(100)
+        elevation:dp(20)
+        RelativeLayout:
+            MDCard:
+                size_hint:None,None
+                size:dp(60),dp(60)
+                radius:dp(100)
+                md_bg_color:"#1984D8"
+            IconButton:
+                theme_icon_color:"Custom"
+                icon_color:1,1,1,1
+                icon_size:"25sp"
+                size_hint:1,1
+                icon:"arrow-right"
+                on_press:Clock.schedule_once(partial(app.call_animation,self),0.2)
+    AnchorLayout:
+        anchor_y:"bottom"
+        Image:
+            source:"assets/svg.png"
+            size_hint:None,None
+            size:app.x,dp(150)
+            allow_stretch:True
+            keep_ratio:False
+
+    MDIconButton:
+        pos_hint:{"center_x":0.5,"center_y":0.95}
+        icon:"account"
+        ripple_scale:0
+        icon_size:"35sp"
